@@ -5,13 +5,12 @@
 1. [General Info](#general-info)
 2. [Technologies](#technologies)
 3. [Prerequisites](#prerequisites)
-4. [Installation](#installation)
-5. [Configuration](#configuration)
-6. [Running the Application](#running-the-application)
-7. [Docker Stack](#docker-stack)
-8. [Test](#test)
-9. [API Documentation](#api-documentation)
-10. [Contact](#contact)
+4. [Installation and Configuration](#installation-and-configuration)
+5. [Running the Application](#running-the-application)
+6. [Docker Stack](#docker-stack)
+7. [Test](#test)
+8. [API Documentation](#api-documentation)
+9. [Contact](#contact)
 
 ## General Info
 
@@ -43,8 +42,9 @@ Before you begin, ensure you have met the following prerequisites:
 * Maven 3.6+ installed.
 * You have MySQL running.
 * Docker and Docker Compose installed(if you prefer to run the application with Docker).
+* **Spring Boot 3.3.6** must be used for compatibility. (update the version in `pom.xml`)
 
-## Installation
+## Installation and Configuration
 
 ***
 
@@ -52,10 +52,22 @@ Before you begin, ensure you have met the following prerequisites:
     ```bash
     git clone https://github.com/jmarqb/ms-auth.git
     cd ms-auth
-    mvn clean install
+    ```
+2. **Verify if you are using the Spring Boot version (3.3.6) in `pom.xml`**:
+   - In `pom.xml`, check that the version of Spring Boot is set as follows:
+    ```xml
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.6</version> <!-- Ensure this version is 3.3.6 -->
+        <relativePath />
+    </parent>
     ```
 
-## Configuration
+3. **Install dependencies**:
+    ```bash
+    mvn clean install
+    ```
 
 ***
 Before running the project, make sure to define the following environment variables:
