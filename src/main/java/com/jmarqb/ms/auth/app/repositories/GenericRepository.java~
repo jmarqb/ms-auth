@@ -1,0 +1,8 @@
+package com.jmarqb.ms.auth.app.repositories;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface GenericRepository<T, ID> extends JpaRepository<T,ID> {
+
+    
+}
