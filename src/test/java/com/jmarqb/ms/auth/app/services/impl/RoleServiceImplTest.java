@@ -32,7 +32,7 @@ class RoleServiceImplTest {
 
     @BeforeEach
     void setup() {
-        roleService = new RoleServiceImpl(roleMapper);
+        roleService = new RoleServiceImpl(roleRepository, roleMapper);
         ReflectionTestUtils.setField(roleService, "roleRepository", roleRepository);
     }
 

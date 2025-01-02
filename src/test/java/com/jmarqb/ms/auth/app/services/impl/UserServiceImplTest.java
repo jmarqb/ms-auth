@@ -51,7 +51,7 @@ class UserServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        userService = new UserServiceImpl(userMapper);
+        userService = new UserServiceImpl(userRepository, roleRepository, passwordEncoder, userMapper);
         ReflectionTestUtils.setField(userService, "userRepository", userRepository);
         ReflectionTestUtils.setField(userService, "roleRepository", roleRepository);
         ReflectionTestUtils.setField(userService,"passwordEncoder", passwordEncoder);

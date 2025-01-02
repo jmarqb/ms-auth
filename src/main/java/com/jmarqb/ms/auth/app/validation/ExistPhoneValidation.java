@@ -3,14 +3,16 @@ package com.jmarqb.ms.auth.app.validation;
 import com.jmarqb.ms.auth.app.services.UserService;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ExistPhoneValidation implements ConstraintValidator<ExistPhone, String> {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public ExistPhoneValidation(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {

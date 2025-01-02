@@ -5,7 +5,6 @@ import com.jmarqb.ms.auth.app.entities.User;
 import com.jmarqb.ms.auth.app.enums.Gender;
 import com.jmarqb.ms.auth.app.repositories.RoleRepository;
 import com.jmarqb.ms.auth.app.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,8 +16,7 @@ import java.util.ArrayList;
 @Profile("!test")
 public class DataInitializer implements CommandLineRunner {
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     private final RoleRepository roleRepository;
 
@@ -27,7 +25,8 @@ public class DataInitializer implements CommandLineRunner {
     private Role adminRole;
     private Role userRole;
 
-    public DataInitializer(RoleRepository roleRepository, UserRepository userRepository) {
+    public DataInitializer(PasswordEncoder passwordEncoder, RoleRepository roleRepository, UserRepository userRepository) {
+        this.passwordEncoder = passwordEncoder;
         this.roleRepository = roleRepository;
         this.userRepository = userRepository;
     }

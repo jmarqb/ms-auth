@@ -2,7 +2,6 @@ package com.jmarqb.ms.auth.app.security.config;
 
 import com.jmarqb.ms.auth.app.security.CustomAuthenticationEntryPoint;
 import com.jmarqb.ms.auth.app.security.filters.JwtAuthenticationFilter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,12 +25,15 @@ import java.util.Arrays;
 @Configuration
 public class SpringSecurityConfig {
 
-    @Autowired
-    private JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
 
-    @Autowired
-    private AuthenticationConfiguration authenticationConfiguration;
+    private final AuthenticationConfiguration authenticationConfiguration;
+
+    public SpringSecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter, AuthenticationConfiguration authenticationConfiguration) {
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+        this.authenticationConfiguration = authenticationConfiguration;
+    }
 
     @Bean
     AuthenticationManager authenticationManager() throws Exception {

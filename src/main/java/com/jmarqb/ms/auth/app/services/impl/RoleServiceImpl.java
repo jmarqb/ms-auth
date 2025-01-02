@@ -11,7 +11,6 @@ import com.jmarqb.ms.auth.app.entities.RoleMapper;
 import com.jmarqb.ms.auth.app.exceptions.RoleNotFoundException;
 import com.jmarqb.ms.auth.app.repositories.RoleRepository;
 import com.jmarqb.ms.auth.app.services.RoleService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -25,11 +24,11 @@ import java.util.List;
 @Service
 public class RoleServiceImpl implements RoleService {
 
-    @Autowired
-    private RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
     private final RoleMapper roleMapper;
 
-    public RoleServiceImpl(RoleMapper roleMapper) {
+    public RoleServiceImpl(RoleRepository roleRepository, RoleMapper roleMapper) {
+        this.roleRepository = roleRepository;
         this.roleMapper = roleMapper;
     }
 
