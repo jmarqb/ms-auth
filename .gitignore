@@ -2,6 +2,7 @@ HELP.md
 target/
 build/
 .env
+*~
 
 # Maven Wrapper
 !.mvn/wrapper/maven-wrapper.jar
