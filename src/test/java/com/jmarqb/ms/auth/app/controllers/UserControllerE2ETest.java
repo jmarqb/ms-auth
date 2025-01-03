@@ -36,7 +36,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.http.HttpMethod.DELETE;
 import static org.springframework.http.HttpMethod.PATCH;
 
-@Transactional
 @ActiveProfiles("test")
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -50,8 +49,6 @@ public class UserControllerE2ETest {
     @Autowired
     private JwtService jwtService;
 
-    @Autowired
-    private UserRepository userRepository;
     private String token;
 
     @LocalServerPort
@@ -142,7 +139,6 @@ public class UserControllerE2ETest {
     @Test
     @Order(4)
     void updateUserIfNotExist() {
-        CreateUserResponseDto expected =  createUserResponseDto(1L);
 
         UpdateUserDto updateUserDto = UpdateUserDto.builder()
                 .firstName("Test")

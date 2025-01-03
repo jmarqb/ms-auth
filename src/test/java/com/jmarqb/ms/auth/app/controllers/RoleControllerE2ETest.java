@@ -22,7 +22,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.ArrayList;
@@ -34,7 +33,6 @@ import static org.springframework.http.HttpMethod.DELETE;
 import static org.springframework.http.HttpMethod.PATCH;
 
 @ActiveProfiles("test")
-@Transactional
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -210,7 +208,6 @@ public class RoleControllerE2ETest {
     @Test
     @Order(8)
     void removeRole() {
-        CreateRoleResponseDto roleAdmin = getRoleAdmin(3L);
 
         ResponseEntity<DeleteResponseDto> response = client.exchange(
                 createURI(String.format("/api/roles/%d", 3L)),
@@ -261,7 +258,7 @@ public class RoleControllerE2ETest {
         PaginatedResponseDto body = response.getBody();
 
         assertNotNull(body);
-        User user = userRepository.findByEmail("testadmin@example.com").orElseThrow();
+        User user = userRepository.findByEmailWithRoles("testadmin@example.com").orElseThrow();
         assertEquals(3, user.getRoles().size());
         assertEquals(0, body.getPage());
         assertEquals(1, body.getSize());
@@ -310,7 +307,7 @@ public class RoleControllerE2ETest {
         PaginatedResponseDto body = response.getBody();
         assertNotNull(body);
 
-        User user = userRepository.findByEmail("testadmin@example.com").orElseThrow();
+        User user = userRepository.findByEmailWithRoles("testadmin@example.com").orElseThrow();
 
         assertEquals(2, user.getRoles().size());
         assertEquals(0, body.getPage());
