@@ -1,6 +1,5 @@
 package com.jmarqb.ms.auth.app.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -43,7 +42,6 @@ public class Role {
     @Column(name = "deleted_at")
     private Date deletedAt;
 
-    @JsonIgnoreProperties({"roles", "hibernateLazyInitializer", "handler"})
     @ToString.Exclude
     @ManyToMany(mappedBy = "roles")
     private List<User> users;

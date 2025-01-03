@@ -1,6 +1,5 @@
 package com.jmarqb.ms.auth.app.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jmarqb.ms.auth.app.enums.Gender;
 import jakarta.persistence.*;
 import lombok.*;
@@ -62,7 +61,6 @@ public class User implements UserDetails{
     @Column(name = "country")
     private String country;
 
-    @JsonIgnoreProperties({"users", "hibernateLazyInitializer", "handler"})
     @ManyToMany
     @JoinTable(
             name = "users_roles",
